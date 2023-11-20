@@ -1,34 +1,22 @@
 package com.tatiramos;
 
-/*
-Com uma classe eu construo quantas "pessoas" eu quiser, ou seja, quantos objetos eu quiser.
-Um objeto é a instância (resultado) de uma classe.
-*/
+import com.tatiramos.model.ContaBancaria;
+
 public class App {
-
     public static void main(String[] args) {
+        System.out.println("Criando nosso Banco Digital");
+        System.out.println();
 
-        // Instanciando uma classe, construindo um objeto. A pessoa virou um objeto.
-        Pessoa pessoa = new Pessoa();
-        pessoa.setNome("Tatiane");
-        pessoa.setIdade(38);
+        ContaBancaria conta = new ContaBancaria("0001", "7542", 5, 100.0);
+        System.out.println("Saldo atual de R$" + conta.getSaldo());
+        System.out.println();
 
-        System.out.println(pessoa.getNome());
-        System.out.println(pessoa.getIdade());
+        conta.depositar(250.0);
+        System.out.println("Saldo atual de R$" + conta.getSaldo());
+        System.out.println();
 
-        Carro meuCarro = new Carro();
-        meuCarro.setModelo("Honda Civic");
-        meuCarro.setAno(2019);
-        meuCarro.setCor("Prata");
-
-        System.out.println(meuCarro.getModelo());
-        System.out.println(meuCarro.getAno());
-        System.out.println(meuCarro.getCor());
-
-        Carro novoCarro = new Carro("Fiat Toro", 2020, "Branco");
-
-        System.out.println(novoCarro.getModelo());
-        System.out.println(novoCarro.getAno());
-        System.out.println(novoCarro.getCor());
+        var saque = conta.sacar(150.0);
+        System.out.println("Saldo atual de R$" + conta.getSaldo());
+        System.out.println();
     }
 }

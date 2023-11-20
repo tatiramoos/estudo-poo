@@ -1,4 +1,4 @@
-package com.tatiramos;
+package com.tatiramos.teste;
 
 
 public class Carro {
