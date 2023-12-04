@@ -1,5 +1,7 @@
 package com.tatiramos.model;
 
+import java.util.Date;
+
 /*
 A herança é um mecanismo da Orientação a Objetos que permite criar novas classes a partir de classes
 já existentes, aproveitando-se das características e comportamentos dessas classes.

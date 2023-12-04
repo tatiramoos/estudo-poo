@@ -1,13 +1,20 @@
 package com.tatiramos.model;
 
+import java.util.Date;
 import java.util.InputMismatchException;
 
-public class ContaBancaria {
+/*
+Uma classe abstrata é uma classe que não pode ser instanciada diretamente.
+Ela é usada para fornecer uma estrutura ou um modelo para outras classes.
+ */
+
+public abstract class ContaBancaria {
 
     private String agencia;
     private String conta;
     private Integer digito;
     private Double saldo;
+    private Date dataAbertura;
     private final Double VALOR_MINIMO_DEPOSITO = 10.0;
 
     public ContaBancaria(String agencia, String conta, Integer digito, Double saldoInicial) {
@@ -15,6 +22,7 @@ public class ContaBancaria {
         this.conta = conta;
         this.digito = digito;
         this.saldo = saldoInicial;
+        this.dataAbertura = new Date();
     }
 
     // Getter and Setters
@@ -44,6 +52,10 @@ public class ContaBancaria {
 
     public Double getSaldo() {
         return saldo;
+    }
+
+    public Date getDataAbertura() {
+        return dataAbertura;
     }
 
     // Métodos
