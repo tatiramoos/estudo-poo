@@ -65,4 +65,12 @@ public class ContaBancaria {
         saldo -= valor;
         return valor;
     }
+
+    public void tranferir(Double valor, ContaBancaria contaDestino){
+        // Efetua um saque na conta atual
+        this.sacar(valor);
+
+        // Efetua o depósito na conta de destino
+        contaDestino.depositar(valor);
+    }
 }
