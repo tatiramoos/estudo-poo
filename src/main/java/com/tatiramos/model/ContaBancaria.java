@@ -1,5 +1,9 @@
 package com.tatiramos.model;
 
+import com.tatiramos.utils.DataUtil;
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 
@@ -13,8 +17,10 @@ public abstract class ContaBancaria {
     private String agencia;
     private String conta;
     private Integer digito;
-    private Double saldo;
+    protected Double saldo;
     private Date dataAbertura;
+    protected ArrayList<Movimentacao> movimentacoes;
+
     private final Double VALOR_MINIMO_DEPOSITO = 10.0;
 
     public ContaBancaria(String agencia, String conta, Integer digito, Double saldoInicial) {
@@ -23,6 +29,16 @@ public abstract class ContaBancaria {
         this.digito = digito;
         this.saldo = saldoInicial;
         this.dataAbertura = new Date();
+
+        // Instancio o array de movimentações.
+        // Se não instanciar o array, vai dar uma exception de NullPointerException.
+        this.movimentacoes = new ArrayList<Movimentacao>();
+
+        // Crio uma movimentação para a abertura de conta.
+        Movimentacao movimentacao = new Movimentacao("Abertura de conta", saldoInicial);
+
+        // Adiciono a primeira movimentação no meu array de movimentações.
+        movimentacoes.add(movimentacao);
     }
 
     // Getter and Setters
@@ -65,7 +81,12 @@ public abstract class ContaBancaria {
         if (valor < VALOR_MINIMO_DEPOSITO) {
             throw new InputMismatchException("O valor mínimo de depósito é R$" + VALOR_MINIMO_DEPOSITO);
         }
+        //efetua o deposito somando o valor ao saldo
         saldo += valor;
+
+        // aqui faco uma movimentacao no extrato
+        Movimentacao movimentacao = new Movimentacao("Deposito", valor);
+        movimentacoes.add(movimentacao);
     }
 
     public Double sacar(Double valor) {
@@ -75,6 +96,11 @@ public abstract class ContaBancaria {
             throw new InputMismatchException("O saldo é insuficiente");
         }
         saldo -= valor;
+
+        // aqui faco uma movimentacao no extrato
+        Movimentacao movimentacao = new Movimentacao("Saque", valor);
+        movimentacoes.add(movimentacao);
+
         return valor;
     }
 
@@ -85,4 +111,7 @@ public abstract class ContaBancaria {
         // Efetua o depósito na conta de destino
         contaDestino.depositar(valor);
     }
+
+    // Metodo abstrato obrigada as classes que estao herdando de implementarem este metodo
+    public abstract void imprimirExtrato();
 }

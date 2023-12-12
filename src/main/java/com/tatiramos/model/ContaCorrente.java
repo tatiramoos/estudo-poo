@@ -1,5 +1,7 @@
 package com.tatiramos.model;
 
+import com.tatiramos.utils.DataUtil;
+
 import java.util.Date;
 
 /*
@@ -30,5 +32,30 @@ public class ContaCorrente extends ContaBancaria{
     public ContaCorrente(String agencia, String conta, Integer digito, Double saldoInicial) {
         // por baixo ele cria uma conta bancaria
         super(agencia, conta, digito, saldoInicial);
+    }
+
+    @Override
+    public void imprimirExtrato(){
+
+        System.out.println("*********************************");
+        System.out.println("******* Extrato Bancário ********");
+        System.out.println("*********************************");
+        System.out.println();
+
+        System.out.println("Gerado em: " + DataUtil.converterDateparaData(new Date()));
+        System.out.println();
+
+        // para cada movimentacao dentro de movimentacoes
+        for(Movimentacao movimentacao : movimentacoes){
+            System.out.println(movimentacao);
+        }
+        System.out.println();
+        System.out.println("Saldo de R$" + saldo);
+
+        System.out.println();
+        System.out.println("*********************************");
+        System.out.println("*********************************");
+        System.out.println("*********************************");
+        System.out.println();
     }
 }

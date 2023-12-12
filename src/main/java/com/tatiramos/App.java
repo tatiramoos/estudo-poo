@@ -2,6 +2,7 @@ package com.tatiramos;
 
 import com.tatiramos.model.ContaCorrente;
 import com.tatiramos.model.ContaPoupanca;
+import com.tatiramos.model.Movimentacao;
 import com.tatiramos.utils.DataUtil;
 
 public class App {
@@ -39,5 +40,8 @@ public class App {
         System.out.println(f1);
         System.out.println(f2);
         System.out.println(f3);
+
+        contaCorrente.imprimirExtrato();
+        contaPoupanca.imprimirExtrato();
     }
 }
