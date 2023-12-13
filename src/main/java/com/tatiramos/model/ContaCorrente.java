@@ -1,11 +1,12 @@
 package com.tatiramos.model;
 
+import com.tatiramos.interfaces.IInvestimento;
 import com.tatiramos.utils.DataUtil;
 
 import java.util.Date;
 
 /*
-A herança é um mecanismo da Orientação a Objetos que permite criar novas classes a partir de classes
+A herança é um mecanismo da Orientação a Objetos que permite criar classes a partir de classes
 já existentes, aproveitando-se das características e comportamentos dessas classes.
 
 Em Java, a herança é implementada usando a palavra-chave extends. A classe que herda os atributos e métodos
@@ -28,34 +29,18 @@ a hierarquia de classes de todos os animais, incluindo mamíferos, aves e répte
 Flexibilidade: A herança permite que as subclasses estendam ou modifiquem o comportamento da classe base,
 o que aumenta a flexibilidade do sistema.
  */
-public class ContaCorrente extends ContaBancaria{
+public class ContaCorrente extends ContaBancaria implements IInvestimento {
     public ContaCorrente(String agencia, String conta, Integer digito, Double saldoInicial) {
         // por baixo ele cria uma conta bancaria
         super(agencia, conta, digito, saldoInicial);
     }
 
     @Override
-    public void imprimirExtrato(){
-
-        System.out.println("*********************************");
-        System.out.println("******* Extrato Bancário ********");
-        System.out.println("*********************************");
-        System.out.println();
-
-        System.out.println("Gerado em: " + DataUtil.converterDateparaData(new Date()));
-        System.out.println();
-
-        // para cada movimentacao dentro de movimentacoes
-        for(Movimentacao movimentacao : movimentacoes){
-            System.out.println(movimentacao);
-        }
-        System.out.println();
-        System.out.println("Saldo de R$" + saldo);
-
-        System.out.println();
-        System.out.println("*********************************");
-        System.out.println("*********************************");
-        System.out.println("*********************************");
-        System.out.println();
+    public void guardar(Double valor) {
+        System.out.println("Guardando a 110% do CDI");
+    }
+    @Override
+    public Double resgatar(Double valor) {
+        return null;
     }
 }

@@ -1,7 +1,5 @@
 package com.tatiramos.model;
-
 import com.tatiramos.utils.DataUtil;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -112,6 +110,26 @@ public abstract class ContaBancaria {
         contaDestino.depositar(valor);
     }
 
-    // Metodo abstrato obrigada as classes que estao herdando de implementarem este metodo
-    public abstract void imprimirExtrato();
+    public void imprimirExtrato(){
+
+        System.out.println("*********************************");
+        System.out.println("******* Extrato Bancário ********");
+        System.out.println("*********************************");
+        System.out.println();
+
+        System.out.println("Gerado em: " + DataUtil.converterDateparaData(new Date()));
+        System.out.println();
+
+        for(Movimentacao movimentacao : this.movimentacoes){
+            System.out.println(movimentacao);
+        }
+        System.out.println();
+        System.out.println("Saldo de R$" + this.saldo);
+
+        System.out.println();
+        System.out.println("*********************************");
+        System.out.println("*********************************");
+        System.out.println("*********************************");
+        System.out.println();
+    }
 }
